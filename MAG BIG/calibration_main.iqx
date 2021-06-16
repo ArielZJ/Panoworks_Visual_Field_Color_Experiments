@@ -1,0 +1,158 @@
+﻿***************************************************************************
+***************************************************************************
+			Online Experiment Viewing Distance Calibration
+***************************************************************************
+***************************************************************************
+
+
+Written by: Ariel Zeleznikow-Johnston (ariel.zeleznikow-johnston@monash.edu)
+
+Last updated: 2020-08-21 by Ariel Zeleznikow-Johnston
+
+Modified from code released by Millisecond Software written by Katja Borchert
+Link to original: https://www.millisecond.com/forums/Topic14608.aspx?Keywords=absoulte%20sizing
+
+Inspired by and stimulus borrowed from code by Qiseng Li
+https://github.com/QishengLi/virtual_chinrest/
+
+******************************************************************************************************************
+*******************************************************************************************************************
+	BACKGROUND INFO
+*******************************************************************************************************************
+*******************************************************************************************************************
+										*SCRIPT PURPOSE*
+
+This script runs a "mm to px" calibration procedure: It calculates how many pixels are needed
+on the current monitor (they differ) per mm and can be used to produce stimuli of absolute sizes on any computer screen.
+
+The procedure can be incorporated via the INCLUDE element into other scripts.
+Once this script is included, all its elements (e.g. block.calibration and expressions.ratio_pxpermm) are accessible 
+to the main script (see SizingDemo.iqx for an example).
+
+
+											*TASK* (modified from original)
+A line of a specified pixel length (default: 1000) is presented on the computer screen.
+The line is then adjusted to the size of a variety of known household objects
+Pressing '>' will increase the line by 2 pixels
+Pressing '<' will decrease the line by 2 pixels
+
+The script then calculates how many pixels are needed per mm (-> expressions.ratio_pxpermm) for the current monitor.
+
+
+Stimuli that require absolute sizing should be declared the following way:
+Example square with height = 3cm = 30mm
+
+/width = 1px * 30 * expressions.ratio_pxpermm 
+/height = 1px * 30 * expressions.ratio_pxpermm
+
+width and height are explicitly specified in pixels therefore start with: 1px * (length in mm) * calibrationratio
+
+***************************************************************************
+***************************************************************************
+Code
+***************************************************************************
+***************************************************************************
+
+// We have to choose an initial value for the size (width) of our calibration image
+// Need to then save the adjusted value later
+<values>
+// misc values
+/radians_to_degrees = 57.2958
+
+// ******************************************************************
+// ********** VALUES THAT MAY NEED TO BE CHANGED ********************
+
+// stuff defined by Yasunori
+/screen_size_x = 1600 // 1600 pixels as per diagram
+/screen_size_y = 900  // 900 pixels as per diagram
+/viewer_distance = 1359 // 1359 mm as per diagram
+/horizontal_DVA_bound = 180 // DVA bounds of screen
+/vertical_DVA_bound = 109.4 // DVA bounds of screen
+
+// ********** END OF VALUES THAT MAY NEED TO BE CHANGED *************
+// ******************************************************************
+
+/ratio_pxperDVA = values.screen_size_x/values.horizontal_DVA_bound 
+//DVA_to_distance = 1 //initialisation
+
+// defining the central fixation point
+/vertical_offset = 517 / 900 // as per diagram
+/bottom_margin = 1px * (900 - 517)
+/x = 1px * values.screen_size_x / 2 // 
+/y = 1px * values.screen_size_y * values.vertical_offset
+
+/radius_F = 1 //initialisation
+/radius_P = 1 // initialisation
+/r_F = 10000 // initialisation for stimulus size
+/R_P = 10000 // initialisation for scaled peripheral stimulus size
+/bound = -999 // initialisation for maximum deviation in degrees from horizontal
+               // that stimuli can be centred at
+</values>
+
+*****************************
+Stimuli
+*****************************
+<text success>
+/items = ("Your viewing distance is <%values.viewer_distance%> mm.
+
+Your screen size is:
+	<%values.screen_size_x%> mm by <%values.screen_size_y%> mm
+	<%values.horizontal_DVA_bound%> DVA by <%values.vertical_DVA_bound%> DVA
+	
+
+Press SPACE to continue.")
+/position = (50%, 50%)
+/ fontstyle = ("Arial", 5%, false, false, false, false, 5, 1)
+/ txcolor = green
+/ txbgcolor = grey
+</text>
+
+<text welcome>
+/items = ("Welcome to the experiment!
+
+Press SPACE to continue.")
+/position = (50,100*values.vertical_offset)
+/ fontstyle = ("Arial", 3%, false, false, false, false, 5, 1)
+/ txcolor = yellow
+/ txbgcolor = grey
+</text>
+*****************************
+Trials
+*****************************
+<trial feedback>
+/ stimulusframes = [1 = welcome] // 
+/ validresponse = (57)
+</trial>
+*****************************
+Blocks
+*****************************
+<block calibration> // display of hardcoded values
+/trials = [1 = feedback]
+/ onblockend = [values.viewer_distance = 1359; // 1359mm as per diagram provided by Yasunori
+				//values.DVA_to_distance = values.viewer_distance*tan(1/values.radians_to_degrees);
+				if(values.magnify == true){ // magnify in the periphery as the task demands
+					values.peripheral_scale = values.radius_peripheral * values.peripheral_scaling_factor; // doesn't really apply for foveal stimuli, but holds approximately outside
+				} else {
+					values.peripheral_scale = 1
+				}
+				values.radius_F = 1px * values.ratio_pxperDVA * values.radius_central; 
+				values.radius_P = 1px * values.ratio_pxperDVA * values.radius_peripheral;
+				values.r_F = 1px * values.ratio_pxperDVA * values.stimulus_size;
+				values.R_P = 1px * values.peripheral_scale * values.r_F;
+
+				values.bound = 90 - acos( (values.bottom_margin/values.ratio_pxperDVA - values.stimulus_size * values.peripheral_scale) /
+											values.radius_peripheral)*
+											values.radians_to_degrees; // bound the stimuli display to prevent occlusion
+				]
+</block>
+
+
+************************
+Data
+***********************
+
+
+*******************************************************************************************************************
+												End of File
+*******************************************************************************************************************
+

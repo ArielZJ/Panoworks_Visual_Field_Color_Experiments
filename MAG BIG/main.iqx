@@ -1,0 +1,262 @@
+﻿***************************************************************************
+***************************************************************************
+			Color Similarity Across Retinal Eccentricity
+			2 stimuli, fixed vs. scaled size patches, during
+			Main experiment page
+***************************************************************************
+***************************************************************************
+
+Written by: Ariel Zeleznikow-Johnston (ariel.zeleznikow-johnston@monash.edu)
+
+Last updated: 2021-06-15 by Ariel Zeleznikow-Johnston
+
+******************************************************************************************************************
+*******************************************************************************************************************
+	BACKGROUND INFO
+*******************************************************************************************************************
+*******************************************************************************************************************
+										*SCRIPT PURPOSE*
+
+FILL IN
+
+***************************************************************************
+***************************************************************************
+						CODE BELOW
+***************************************************************************
+***************************************************************************
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	INCLUDE
+*******************************************************************************************************************
+*******************************************************************************************************************
+<include>
+/file = "calibration_main.iqx"
+/file = "instructions.iqx"
+/file = "circle_locations.iqx"
+/file = "practice.iqx"
+/file = "trial_types.iqx"
+/file = "response.iqx"
+/file = "survey.iqx"
+/file = "general_stimuli.iqx"
+/file = "trial_type_sequencer.iqx"
+</include>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	DEFAULTS:
+*******************************************************************************************************************
+*******************************************************************************************************************
+<defaults>
+/ canvasaspectratio = (16,9) // Should be correct for Panoworks, based on 1600 * 900 px resolution
+/ canvassize = (1600px,900px) // Should be correct for Panoworks, based on 1600 * 900 px resolution
+/ screencolor = (127,127,127)
+</defaults>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	Initialised Constants:
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+********** Main factors to be optimised here **************
+<values>
+
+// These three factors are what need to be adjusted for a specific experiment
+
+/radius_central = 1 // chosen 1 DVA as it's still within the fovea
+/radius_peripheral = 60 // maximum of what Panoworks should be capable of without horizontal occlusion
+/stimulus_size = 1 // arbitarily chosen 1 DVA
+
+
+// This factor can be adjusted if you want to play with the peripheral scaling factor
+/magnify = true // set to 'true' if you want scaling, 'false' if you don't want peripheral scaling
+
+/peripheral_scaling_factor = 0.45 // scaling factor for peripheral stimuli, chosen based on Freeman & Simoncelli 2011 fig 1.
+
+
+// ************* main factors to be optimised above ************
+
+/peripheral_scale = -999		// initialised, but updated in calibration_main.iqx for radius_peripheral
+
+// need to limit the colours displayed for this test, come back to this
+/color1 = #ff0000
+/color2 = #ffaa00
+/color3 = #aaff00
+/color4 = #00ff00
+/color5 = #00ffa9
+/color6 = #00a9ff
+/color7 = #0000ff
+/color8 = #aa00ff
+/color9 = #ff00aa
+
+// various counters and such
+/trial_number = 0
+/trial_number_practice = 0
+/Cross_position = 0
+/Circle_1 = 0
+/Circle_2 = 0
+/Circle_3 = 0
+/Circle_4 = 0
+/Position_1 = 0
+/Position_2 = 0
+/Position_3 = 0
+/Position_4 = 0
+/Color_1 = 0
+/Color_2 = 0
+/Color_3 = 0
+/Color_4 = 0
+/response_time = 0
+/temp = 0
+
+/number_of_patch = 324 // change to 324 MARKED done
+/number_of_patch_practice = 9
+
+// timing & display control
+/patch_timeout = 250
+/stim_cue_gap = 100
+/cue_time = 250
+
+/trial_type = ""
+
+// debugging aids
+/sequence_number = -1 // debugging aid
+/order_num = -1 // debugging aid
+
+/test1 = -999
+/test2 = -999
+/test3 = -999
+/test4 = -999
+</values>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	Control system:
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+** counter to run the practice trials
+<counter sequence_practice>
+/ select = noreplace(1-9)
+/ selectionrate = block
+</counter>
+
+** counter to run the main trials
+<counter sequence> // change to 334 MARKED done
+/ select = noreplace(1-334)  // 324 main trials + 10 catch trials = 334 total trials. Should match the number of trials in 'experiment'
+/ selectionrate = block
+</counter>
+
+** counter to make sure we do every trial for each trial type
+** during
+<counter order_during>
+/ select = noreplace(1-324) // change to 324 done
+/ selectionrate = block
+</counter>
+
+** catch - 10 trials
+<counter order_catch>
+/ select = noreplace(1-10)
+/ selectionrate = block
+</counter>
+
+*********** practice trial versions of the counters
+<counter order_during_practice>
+/ select = noreplace(1-324) // change to done
+/ selectionrate = block
+</counter>
+
+** catch - 10 trials
+<counter order_catch_practice>
+/ select = noreplace(1-9) // change
+/ selectionrate = block
+</counter>
+
+***********************************
+
+** 8 different possible catch vals
+<counter order_catch_vals>
+/ select = replace(1-8)
+/ selectionrate = block
+</counter>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	STIMULI
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+<htmlpage consent>
+/ file = "consent_form.html"
+/ position = (50, 30)
+/ size = (30%, 30%)
+</htmlpage>
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	BLOCKS
+*******************************************************************************************************************
+*******************************************************************************************************************
+<block consent>
+/ preinstructions = (consent)
+</block>
+
+<block experiment>
+/trials = [ 1 = trial_selection]
+</block>
+
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	EXPERIMENT
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+<expt main>
+/ blocks = [1 = calibration; 2 = instructions; 3-11 = practice; 12 = end_practice; 13-346 = experiment]
+</expt>
+
+*******************************************************************************************************************
+*******************************************************************************************************************
+	DATA: this section contains data file information
+*******************************************************************************************************************
+*******************************************************************************************************************
+
+********************
+raw data
+********************
+build:							Inquisit build..
+date, time, subject, group:		date and time script was run with the current subject/groupnumber 
+blockcode, blocknum:			the name and number of the current block
+trialcode, trialnum: 			the name and number of the currently recorded trial
+									(Note: not all trials that are run might record data) 
+stimulusitem:					the presented stimuli in order of trial presentation
+response:						the participant's response
+correct:						the correctness of the response (1 = correct; 0 = incorrect)
+latency: 						the response latency (in ms)
+
+
+<data>
+/file = "color_eccen_2stim_during.iqdat"
+/columns = [build, date, time, subject, group, 
+values.radius_central,values.radius_peripheral,values.stimulus_size,values.magnify,values.peripheral_scale,
+blockcode, blocknum, trialcode, trialnum, 
+response, correct, latency,
+values.trial_number, values.sequence_number, values.order_num, values.trial_type,values.Cross_position,
+values.Circle_1,values.Position_1,values.Color_1,
+values.Circle_2,values.Position_2,values.Color_2,
+values.Position_3,values.Color_3,values.Position_4,values.Color_4,
+values.similarity,values.response_time,
+values.angle_1,values.angle_2,values.angle_3,values.angle_4,values.angle_1_cue,values.angle_2_cue,values.angle_3_cue,values.angle_4_cue,
+values.catch_vals,values.ratio_pxperDVA, values.screen_size_x, values.screen_size_y, values.viewer_distance,
+values.radius_F, values.radius_P, values.r_F, values.bound
+]
+ /separatefiles = true
+</data>
+
+*******************************************************************************************************************
+												End of File
+*******************************************************************************************************************
+values.DVA_to_distance * values.ratio_pxpermm * values.radius_central; // Need to adjust this into DVA
+		values.radius_P = 1px * values.DVA_to_distance * values.ratio_pxpermm * values.radius_peripheral; // // Need to adjust this into DVA

@@ -48,7 +48,7 @@
 
 
 <text Next_button>
-/ items = ("Press SPACE BUTTON to continue")
+/ items = ("スペースキーを押して、次に進んでください。")
 / position = (53%,70%) // smaller for panoworks
 / fontstyle = ("Arial", 1%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
@@ -56,9 +56,8 @@
 </text>
 
 <text Instruction_Page_1>
-/ items = ("Throughout the experiment, focus on the cross at the centre
-of the screen.
-2 circles will flash out quickly somewhere on the screen")
+/ items = ("実験中は、スクリーン中央の十字を見つめ続けてください。
+スクリーンのどこかに２つの円が短時間提示されます。（この時も、中央の十字から視線を動かさないでください。）")
 / hposition = 50%
 / vposition = 63% // smaller for panoworks
 / fontstyle = ("Arial", 1%, true)
@@ -77,14 +76,16 @@ of the screen.
 
 
 <text Instruction_Page_2>
-/ items = ("Sometimes you will need to decide the similarity level of the colour of the 2 circles. Ignore any size or position differences.
+/ items = ("実験中、提示された２つの円の色の類似度を答えるように、指示されることがあります。この時、円の大きさや位置の違いは無視して回答してください。
 
-0 => most similar colour (least different colour)
-7 => most different colour (least similar colour)
+０ → 最も似ている色 (違いが最小の色)
+７ → 最も異っている色 (類似度が最小の色)
 
-Please use the full range of possible responses.
 
-After choosing, move your cursor back to the centre and click the  box to continue")
+０から７までの各値を最大限使い切るように心がけてください。
+
+
+選択後、カーソルを中央に戻して、ボックスをクリックし、次に進んでください。")
 / hposition = 50%
 / vposition = 63% // closer for panoworks
 / fontstyle = ("Arial", 1%, true) // closer for panoworks
@@ -109,8 +110,8 @@ After choosing, move your cursor back to the centre and click the  box to contin
 </video>
 
 <text Instruction_Page_4>
-/ items = ("Sometimes there will be special trials where you will just be asked to click on a particular value.
-Please just click the value on that trial.")
+/ items = ("この実験には、特別な試行が数回含まれています。
+その試行では、画面の指示に従って提示された値をクリックしてください。")
 / hposition = 50%
 / vposition = 63% // closer for panoworks
 / fontstyle = ("Arial", 1%, true) // smaller for panoworks
@@ -119,7 +120,7 @@ Please just click the value on that trial.")
 </text>
 
 <text Instruction_Page_5>
-/ items = ("During the test, you will see these 9 colors below")
+/ items = ("実験中、以下の９つ色が提示されます。")
 / hposition = 50%
 / vposition = 30% // smaller for panoworks
 / fontstyle = ("Arial", 1%, true) // smaller for panoworks
@@ -185,8 +186,8 @@ Please just click the value on that trial.")
 
 
 <text StartPractice>
-/ items = ("You are going to do a few practice trials to make you be more familar with the experiment.
-When you ready, please press SPACE button to start the practice trial.")
+/ items = ("実験に慣れるために、何回か練習試行を行います。
+準備がよろしければ、スペースキーを押して、練習試行を開始してください。")
 / position = (50%,50%)
 / fontstyle = ("Arial", 1%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)

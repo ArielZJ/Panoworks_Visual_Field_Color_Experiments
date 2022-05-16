@@ -32,7 +32,7 @@
 </text>
 
 <text catch>
-	/ items = ("SPECIAL TRIAL")
+	/ items = ("特別な試行")
 	/ position = (values.x,values.y)
 	/ color = red
 	/ txbgcolor = (127, 127, 127)

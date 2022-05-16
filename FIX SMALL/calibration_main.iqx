@@ -93,14 +93,14 @@ Code
 Stimuli
 *****************************
 <text success>
-/items = ("Your viewing distance is <%values.viewer_distance%> mm.
+/items = ("画面までの距離は <%values.viewer_distance%> mm です。
 
-Your screen size is:
-	<%values.screen_size_x%> mm by <%values.screen_size_y%> mm
-	<%values.horizontal_DVA_bound%> DVA by <%values.vertical_DVA_bound%> DVA
-	
+画面サイズは:
+        <%values.screen_size_x%> mm × <%values.screen_size_y%> mm、
+        <%values.horizontal_DVA_bound%> DVA × <%values.vertical_DVA_bound%> DVA  です。
+        
 
-Press SPACE to continue.")
+スペースキーを押して、次に進んでください。")
 /position = (50%, 50%)
 / fontstyle = ("Arial", 5%, false, false, false, false, 5, 1)
 / txcolor = green
@@ -108,9 +108,9 @@ Press SPACE to continue.")
 </text>
 
 <text welcome>
-/items = ("Welcome to the experiment!
+/items = ("実験にようこそ！
 
-Press SPACE to continue.")
+スペースキーを押して、次に進んでください。")
 /position = (50,100*values.vertical_offset)
 / fontstyle = ("Arial", 3%, false, false, false, false, 5, 1)
 / txcolor = yellow

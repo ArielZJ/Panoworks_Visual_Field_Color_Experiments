@@ -41,7 +41,7 @@
 
 <instruct>
 / nextkey = (57)
-/ fontstyle = ("Arial", 4%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 6%, true) // smaller for panoworks
 / screencolor = (127,127,127)
 / txcolor = yellow
 </instruct>
@@ -49,18 +49,19 @@
 
 <text Next_button>
 / items = ("スペースキーを押して、次に進んでください。")
-/ position = (53%,70%) // smaller for panoworks
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ position = (53%,75%) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
 
 <text Instruction_Page_1>
 / items = ("実験中は、スクリーン中央の十字を見つめ続けてください。
-スクリーンのどこかに２つの円が短時間提示されます。（この時も、中央の十字から視線を動かさないでください。）")
+スクリーンのどこかに２つの円が短時間提示されます。
+（この時も、中央の十字から視線を動かさないでください。）")
 / hposition = 50%
 / vposition = 63% // smaller for panoworks
-/ fontstyle = ("Arial", 1%, true)
+/ fontstyle = ("Arial", 1.5%, true)
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
@@ -76,14 +77,14 @@
 
 
 <text Instruction_Page_2>
-/ items = ("実験中、提示された２つの円の色の類似度を答えるように、指示されることがあります。この時、円の大きさや位置の違いは無視して回答してください。
+/ items = ("実験中、提示された２つの円の色の類似度を答えるように、指示されることがあります。
+この時、円の大きさや位置の違いは無視して回答してください。
 
-０ → 最も似ている色 (違いが最小の色)
-７ → 最も異っている色 (類似度が最小の色)
+０→ 最も似ている色 (違いが最小の色)
+７→ 最も異っている色 (類似度が最小の色)
 
-
-０から７までの各値を最大限使い切るように心がけてください。
-
+０から７までの類似度の答えが同じ位の頻度になるように答えてください。
+あまり偏った答え方（例：０と７ばかり、３と４ばかりなど）は避けてください。
 
 選択後、カーソルを中央に戻して、ボックスをクリックし、次に進んでください。")
 / hposition = 50%
@@ -114,7 +115,7 @@
 その試行では、画面の指示に従って提示された値をクリックしてください。")
 / hposition = 50%
 / vposition = 63% // closer for panoworks
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
@@ -123,7 +124,7 @@
 / items = ("実験中、以下の９つ色が提示されます。")
 / hposition = 50%
 / vposition = 30% // smaller for panoworks
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
@@ -189,7 +190,7 @@
 / items = ("実験に慣れるために、何回か練習試行を行います。
 準備がよろしければ、スペースキーを押して、練習試行を開始してください。")
 / position = (50%,50%)
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>

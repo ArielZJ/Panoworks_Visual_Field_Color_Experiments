@@ -55,7 +55,7 @@
 / items = ()
 / color = yellow
 / txbgcolor = (127, 127, 127)
-/ fontstyle = ("Arial",2%) // smaller for panoworks
+/ fontstyle = ("Arial",3%) // smaller for panoworks
 / position = (50%,24%) // moved closer for panoworks
 </text>
 
@@ -75,21 +75,21 @@
 
 <text notice_centre_mouse>
 / items = ("緑の四角をクリックして次に進んでください")
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / position = (50%,70%) // closer for panoworks
 / txbgcolor = (127,127,127)
 </text>
 
 <text process_notice>
 / items = ("<%values.number_of_patch%> 試行中、<%values.trial_number%> 試行が完了しました")
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / position = (50%,73%) // closer for panoworks
 / txbgcolor = (127,127,127)
 </text>
 
 <text process_notice_practice>
 / items = ("<%values.number_of_patch_practice%> の練習試行中、 <%values.trial_number_practice%> 試行が完了しました")
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / position = (50%,73%) // closer for panoworks
 / txbgcolor = (127,127,127)
 </text>
@@ -100,7 +100,7 @@
 ("先ほど提示された円の類似度を選んでください。
                 ０ → 最も似ている
                 ７ → 最も異なっている")
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / position = (50,75) // closer for panoworks
 </text>
@@ -110,7 +110,7 @@
 ("先ほど提示された円の類似度を選んでください。
                 ０ → 最も似ている
                 ７ → 最も異なっている")
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / position = (50,75) // closer for panoworks
 </text>
@@ -118,7 +118,7 @@
 <text catch_instructions>
 / items = 
 ("特別な試行です! 以下の値を選択してください: <%values.catch_vals%>") //.item(counter.order_catch_vals.selectedvalue)
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txcolor = black
 / txbgcolor = (127,127,127)
 / position = (50,75) // closer for panoworks

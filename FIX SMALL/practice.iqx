@@ -37,7 +37,7 @@
 <text title>
 / items = ("練習試行")
 / position = (50%,15%) // closer for panoworks
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
@@ -46,9 +46,10 @@
 <text EndPractice>
 / items = ("練習試行が終了しました。
 次の画面から本試行になります。
-準備がよろしければ、スペースキーを押して、本試行を開始してください。")
+準備がよろしければ、
+スペースキーを押して、本試行を開始してください。")
 / position = (50,100*values.vertical_offset)
-/ fontstyle = ("Arial", 1%, true) // smaller for panoworks
+/ fontstyle = ("Arial", 1.5%, true) // smaller for panoworks
 / txbgcolor = (127,127,127)
 / txcolor = yellow
 </text>
